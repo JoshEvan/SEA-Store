@@ -16,6 +16,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Link, useHistory } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { logout } from '../../services/users';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -106,7 +107,7 @@ export function Header(props) {
   };
 
   const handleLogOut = () => {
-    alert("log out")
+    logout()
     setAnchorEl(null);
     handleMobileMenuClose();
   };
