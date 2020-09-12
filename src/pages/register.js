@@ -9,9 +9,9 @@ import { Header } from "../components/organism";
 
 const validationSchema = yup.object({
   email: yup.string().email().required(),
-  name: yup.string().email().required(),
-  address: yup.string().email().required(),
-  phone: yup.string().email().required(),
+  name: yup.string().required(),
+  address: yup.string().required(),
+  phone: yup.string().required(),
   password: yup.string().required(),
   role: yup
     .mixed()
@@ -42,6 +42,7 @@ export class RegisterPage extends React.Component {
       snackbar: {
         isShown: false,
         msg: "",
+        color:'green',
         parentCallback: this.closeSnackbar(),
       },
     };
@@ -50,16 +51,18 @@ export class RegisterPage extends React.Component {
   submitLogin = async (data) => {
     let res = await register(data);
     console.log(res);
+    let [msg, color] = ["fail to register [x]", "red"]
     if (res !== null) {
       localStorage.setItem("token", res.token);
-    } else {
-      this.setState({
-        snackbar: {
-          isShown: true,
-          msg: "invalid username and password [x]".split(),
-        },
-      });
+      [msg, color] = ["success register [x]", "green"]
     }
+    this.setState({
+      snackbar: {
+        isShown: true,
+        msg: msg.split(),
+        color:color
+      },
+    });
   };
 
   closeSnackbar = () => {

@@ -1,11 +1,14 @@
 import callAPI from './api.js';
 
 export const register = async newUser => {
-  const res = await callAPI(`/users/`, 'POST', JSON.stringify(newUser));
-  if (res.status != 201) {
+  console.log(JSON.stringify(newUser))
+  const res = await callAPI(`/users`, 'POST', JSON.stringify(newUser));
+  console.log("RES")
+  console.log(res)
+  if (res.status != 200) {
     return null;
   }
-  return res.json();
+  return await res.json();
 };
 
 export const login = async (email, password, role) => {

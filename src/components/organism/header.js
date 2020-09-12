@@ -119,7 +119,7 @@ export function Header(props) {
   };
 
   const handleProfilePage = () => {
-    alert("profile page")
+    history.push('/profile')
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -173,7 +173,7 @@ export function Header(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <MailIcon />
@@ -188,18 +188,21 @@ export function Header(props) {
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
+      {
+        localStorage.getItem('token') !== null && 
+        <React.Fragment>
+          <MenuItem onClick={handleProfilePage}>Profile</MenuItem>
+          <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+        </React.Fragment>
+      }
+
+      {
+        localStorage.getItem('token') === null && 
+        <React.Fragment>
+          <MenuItem onClick={handleLogIn}>Log In / Register</MenuItem>
+        </React.Fragment>
+      }
     </Menu>
   );
 

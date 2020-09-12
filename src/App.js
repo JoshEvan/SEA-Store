@@ -5,6 +5,7 @@ import "./App.css";
 import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom'
 import { LoginPage } from "./pages/login";
 import { RegisterPage } from "./pages/register";
+import { ProfilePage } from "./pages/profile";
 
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
                 />
                 <Route
                     path = "/register" component={RegisterPage}
+                />
+                <Route
+                    path = "/profile" component={ProfilePage}
                 />
             </Switch>
         </BrowserRouter>
