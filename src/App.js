@@ -16,6 +16,9 @@ function App() {
                 <Route
                     path = "/item-detail/:id" component={ItemDetail}
                 />
+                <Route
+                    path = "/auth" component={ItemDetail}
+                />
             </Switch>
         </BrowserRouter>
     </div>
