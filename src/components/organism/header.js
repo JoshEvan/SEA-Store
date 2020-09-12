@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
@@ -90,6 +90,8 @@ export function Header(props) {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const history = useHistory();
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -110,7 +112,7 @@ export function Header(props) {
   };
 
   const handleLogIn = () => {
-    alert("log in")
+    history.push('/login')
     setAnchorEl(null);
     handleMobileMenuClose();
   };

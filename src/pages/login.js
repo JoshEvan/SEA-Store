@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 import { Redirect, useHistory, withRouter } from "react-router-dom";
 import { login } from "../services/users";
+import { Header } from '../components/organism';
 
 const validationSchema = yup.object({
   email: yup.string().email().required("Email must be filled"),
@@ -85,6 +86,7 @@ export class LoginPage extends React.Component {
 
     return (
       <div>
+        <Header></Header>
         <Container style={{ textAlign: "center" }}>
           <Paper elevation={0} style={{ padding: "2%" }}>
             {this.state.snackbar.isShown && (
