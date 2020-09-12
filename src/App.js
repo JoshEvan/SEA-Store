@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import { ItemList, ItemDetail } from "./pages";
 import "./App.css";
 import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom'

@@ -35,6 +35,7 @@ export class ItemList extends Component {
     return (
       <div>
         <Header></Header>
+        
         <Box display="flex" flexWrap="wrap" m = {1}>
           {this.state.rawContent.map((c) => {
             return (
