@@ -99,13 +99,18 @@ export function Header(props) {
   };
 
   const handleMenuClose = () => {
-    console.log("profile clicked")
     setAnchorEl(null);
     handleMobileMenuClose();
   };
 
   const handleLogOut = () => {
-    console.log("log out")
+    alert("log out")
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleLogIn = () => {
+    alert("log in")
     setAnchorEl(null);
     handleMobileMenuClose();
   };
@@ -137,8 +142,20 @@ export function Header(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleProfilePage}>Profile</MenuItem>
-      <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+      {
+        localStorage.getItem('token') !== null && 
+        <React.Fragment>
+          <MenuItem onClick={handleProfilePage}>Profile</MenuItem>
+          <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+        </React.Fragment>
+      }
+
+      {
+        localStorage.getItem('token') === null && 
+        <React.Fragment>
+          <MenuItem onClick={handleLogIn}>Log In / Register</MenuItem>
+        </React.Fragment>
+      }
     </Menu>
   );
 
@@ -187,14 +204,14 @@ export function Header(props) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Link to="/" style={{textDecoration:'none', color:'white'}}>
             <Typography className={classes.title} variant="h6" noWrap>
               SEA Store
