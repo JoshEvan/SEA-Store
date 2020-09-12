@@ -1,12 +1,10 @@
 import React from "react";
-import { Formik, Field, useField, FieldAttributes, FieldArray } from "formik";
+import { Formik, useField } from "formik";
 import {
   TextField,
   Button,
   Container,
-  Grid,
   Paper,
-  Snackbar,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
@@ -15,8 +13,8 @@ import { login } from "../services/users";
 import { Header } from '../components/organism';
 
 const validationSchema = yup.object({
-  email: yup.string().email().required("Email must be filled"),
-  password: yup.string().required("Password must be filled"),
+  email: yup.string().email().required(),
+  password: yup.string().required(),
   role: yup
     .mixed()
     .oneOf(["ADMIN", "CUSTOMER", "MERCHANT"])

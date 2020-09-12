@@ -4,6 +4,7 @@ import { ItemList, ItemDetail } from "./pages";
 import "./App.css";
 import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom'
 import { LoginPage } from "./pages/login";
+import { RegisterPage } from "./pages/register";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
                     path = "/login" component={LoginPage}
                 />
                 <Route
-                    path = "/register" component={LoginPage}
+                    path = "/register" component={RegisterPage}
                 />
             </Switch>
         </BrowserRouter>
