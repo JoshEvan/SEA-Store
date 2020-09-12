@@ -1,10 +1,11 @@
 export default async (url, method, body) => {
-  console.log(process.env)
-  return await fetch(`${process.env.API_URL}/${url}`, {
+  let API_URL = process.env.REACT_APP_API_URL.trim()
+  return await fetch(`${API_URL}${url}`, {
     method: method,
     body: body,
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
     },
   });
 };

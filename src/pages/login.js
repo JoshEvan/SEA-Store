@@ -44,6 +44,7 @@ export class LoginPage extends React.Component {
       snackbar: {
         isShown: false,
         msg: "",
+        color:'green',
         parentCallback: this.closeSnackbar(),
       },
     };
@@ -51,17 +52,21 @@ export class LoginPage extends React.Component {
 
   submitLogin = async (data) => {
     let res =  await login(data.email, data.password, data.role);
-    console.log(res)
+    let msg = '', color = 'green'
     if ( res !== null) {
       localStorage.setItem('token',res.token)
+      msg = 'success login [x]'
     } else {
-      this.setState({
-        snackbar:{
-          isShown:true,
-          msg:("invalid username and password [x]").split()
-        }
-      })
+      msg = "invalid username and password [x]"
+      color = 'red'
     }
+    this.setState({
+      snackbar:{
+        isShown:true,
+        color: color,
+        msg:(msg).split()
+      }
+    })
   };
 
   closeSnackbar = () => {
@@ -88,7 +93,7 @@ export class LoginPage extends React.Component {
         <Container style={{ textAlign: "center" }}>
           <Paper elevation={0} style={{ padding: "2%" }}>
             {this.state.snackbar.isShown && (
-              <span style={{ width: "fit-content", color:'red' }}>
+              <span style={{ width: "fit-content", color:this.state.color }}>
                 <div onClick={this.closeSnackbar}>
 								{this.state.snackbar.msg}
 								</div>
@@ -102,12 +107,10 @@ export class LoginPage extends React.Component {
               }}
               onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);
-                console.log("SUBMITTING");
 
                 this.submitLogin(data);
 
                 setSubmitting(false);
-                console.log("done submit add data");
               }}
               validationSchema={validationSchema}
             >

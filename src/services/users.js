@@ -14,6 +14,8 @@ export const login = async (email, password, role) => {
     'POST',
     JSON.stringify({ email, password, role })
   );
+  console.log("done logging in")
+  console.log(res)  
   if (res.status != 200) {
     return null;
   }
