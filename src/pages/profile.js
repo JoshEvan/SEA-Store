@@ -91,7 +91,7 @@ export class ProfilePage extends React.Component {
   }
 
   render() {
-    if (this.state.pass) {
+    if (localStorage.getItem('token') === null) {
       return <Redirect to="/" />;
     }
 
@@ -101,7 +101,7 @@ export class ProfilePage extends React.Component {
         <Container style={{ textAlign: "center" }}>
           <Paper elevation={0} style={{ padding: "2%" }}>
             {this.state.snackbar.isShown && (
-              <span style={{ width: "fit-content", color: "red" }}>
+              <span style={{ width: "fit-content", color: this.state.snackbar.color }}>
                 <div onClick={this.closeSnackbar}>
                   {this.state.snackbar.msg}
                 </div>

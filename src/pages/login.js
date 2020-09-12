@@ -55,6 +55,7 @@ export class LoginPage extends React.Component {
     let msg = '', color = 'green'
     if ( res !== null) {
       localStorage.setItem('token',res.token)
+      localStorage.setItem('ROLE',data.role)
       msg = 'success login [x]'
     } else {
       msg = "invalid username and password [x]"

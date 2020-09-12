@@ -108,6 +108,7 @@ export function Header(props) {
 
   const handleLogOut = () => {
     logout()
+    history.push('/');
     setAnchorEl(null);
     handleMobileMenuClose();
   };
