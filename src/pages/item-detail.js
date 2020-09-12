@@ -67,8 +67,8 @@ export class ItemDetail extends React.Component {
            
         </CardContent>
         <CardActions>
-            {(localStorage.getItem("JWT") == null ||
-              jwt_decode(localStorage.getItem("JWT")).sub !==
+            {(localStorage.getItem("token") == null ||
+              jwt_decode(localStorage.getItem("token")).sub !==
                 this.state.item.merchant) && (
               <Button
                 fullWidth={true}
@@ -79,8 +79,8 @@ export class ItemDetail extends React.Component {
                 add to cart
               </Button>
             )}
-            {localStorage.getItem("JWT") !== null &&
-              jwt_decode(localStorage.getItem("JWT")).sub ===
+            {localStorage.getItem("token") !== null &&
+              jwt_decode(localStorage.getItem("token")).sub ===
                 this.state.item.merchant && (
                 <React.Fragment>
                   <Button>Edit</Button>
