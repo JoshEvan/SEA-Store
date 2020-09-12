@@ -8,11 +8,11 @@ export const register = async newUser => {
   return res.json();
 };
 
-export const login = async (email, password) => {
+export const login = async (email, password, role) => {
   const res = await callAPI(
     '/users/login',
     'POST',
-    JSON.stringify({ email, password })
+    JSON.stringify({ email, password, role })
   );
   if (res.status != 200) {
     return null;

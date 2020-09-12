@@ -4,5 +4,3 @@ export const serviceGetAllItems = async () => {
   console.log("fecthing");
   return await fetch(BACKEND_URL + GET_ALL_ITEM);
 };
-
-// export const serviceG

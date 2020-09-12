@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import { ItemList, ItemDetail } from "./pages";
 import "./App.css";
 import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom'
+import { LoginPage } from "./pages/login";
 
 
 function App() {
@@ -17,7 +18,10 @@ function App() {
                     path = "/item-detail/:id" component={ItemDetail}
                 />
                 <Route
-                    path = "/auth" component={ItemDetail}
+                    path = "/login" component={LoginPage}
+                />
+                <Route
+                    path = "/register" component={LoginPage}
                 />
             </Switch>
         </BrowserRouter>
