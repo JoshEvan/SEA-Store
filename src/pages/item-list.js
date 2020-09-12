@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "regenerator-runtime/runtime.js";
 import { Box } from "@material-ui/core";
-import { BACKEND_URL, GET_ALL_ITEM } from "../../config/api";
-import { OutlinedCard } from "./card";
+import { OutlinedCard, Header } from "../components/organism";
 import Button from "@material-ui/core/Button";
-import { Link } from "gatsby";
+import { Link } from "react-router-dom";
+import { serviceGetAllItems } from "../services/item-service";
 
 export class ItemList extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export class ItemList extends Component {
 
   loadAllItems = async () => {
     console.log("posting all item request");
-    fetch(BACKEND_URL + GET_ALL_ITEM)
+    await serviceGetAllItems()
       .then((data) => data.json())
       .then((data) => {
         this.setState({
@@ -34,7 +34,8 @@ export class ItemList extends Component {
   render() {
     return (
       <div>
-        <Box display="flex" flexWrap="wrap">
+        <Header></Header>
+        <Box display="flex" flexWrap="wrap" m = {1}>
           {this.state.rawContent.map((c) => {
             return (
               <React.Fragment>
@@ -46,9 +47,11 @@ export class ItemList extends Component {
                     price={"IDR " + c.price}
                     actions={
                       <Link
-                        to={"item-detail/"+c.id}
+                        to={{
+                          pathname: "item-detail/" + c.id,
+                          state: { item: c },
+                        }}
                         style={{ textDecoration: "none" }}
-                        item={c}
                       >
                         <Button
                           variant="outlined"
