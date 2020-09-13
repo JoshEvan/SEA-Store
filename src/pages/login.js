@@ -52,7 +52,8 @@ export class LoginPage extends React.Component {
 
   submitLogin = async (data) => {
     let res =  await login(data.email, data.password, data.role);
-    let msg = '', color = 'green'
+    let msg = ''
+    let color = 'green'
     if ( res !== null) {
       localStorage.setItem('token',res.token)
       localStorage.setItem('ROLE',data.role)
@@ -94,7 +95,7 @@ export class LoginPage extends React.Component {
         <Container style={{ textAlign: "center" }}>
           <Paper elevation={0} style={{ padding: "2%" }}>
             {this.state.snackbar.isShown && (
-              <span style={{ width: "fit-content", color:this.state.color }}>
+              <span style={{ width: "fit-content", color:this.state.snackbar.color }}>
                 <div onClick={this.closeSnackbar}>
 								{this.state.snackbar.msg}
 								</div>

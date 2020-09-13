@@ -7,6 +7,7 @@ import { Redirect, useHistory, withRouter } from "react-router-dom";
 import { register, getUser } from "../services/users";
 import { Header } from "../components/organism";
 import jwt_decode from "jwt-decode";
+import {serviceAddItem} from '../services/item-service';
 
 const validationSchema = yup.object({
 });
@@ -42,7 +43,8 @@ export class AddItemPage extends React.Component {
   }
 
   addItem = async (data) => {
-    let res = await null;
+    data.merchantId = ''
+    let res = await serviceAddItem(data);
     let [msg, color] = ["fail to add item [x]", "red"];
     if (res !== null) {
       [msg, color] = ["success add item [x]", "green"];
@@ -88,12 +90,11 @@ export class AddItemPage extends React.Component {
             )}
             <Formik
               initialValues={{
-                email: this.state.email,
-                password: "",
-                role: "",
-                address: this.state.address,
-                name: this.state.name,
-                phone: this.state.phone,
+                name:'',
+                category:'',
+                quantity:0,
+                description:'',
+                price:0
               }}
               onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);

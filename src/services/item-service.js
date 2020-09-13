@@ -12,3 +12,9 @@ export const serviceDeleteItem = async(itemId) => {
   }
   return await res.json();
 }
+
+export const serviceAddItem = async(data) => {
+  const res = await callAPI('/products/insert', 'POST');
+  if (res.status != 200) return null;
+  return await res.json();
+}
