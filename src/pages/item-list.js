@@ -50,7 +50,7 @@ export class ItemList extends Component {
               </Button>
             </Link>
         }
-        <Box display="flex" flexWrap="wrap" m={1}>
+        <Box display="flex" flexWrap="wrap" m={10}>
           {this.state.rawContent.map((c) => {
             return (
               <React.Fragment>
