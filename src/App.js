@@ -5,6 +5,7 @@ import {BrowserRouter, Switch, Route, withRouter} from 'react-router-dom'
 import { LoginPage } from "./pages/login";
 import { RegisterPage } from "./pages/register";
 import { ProfilePage } from "./pages/profile";
+import { AddItemPage } from "./pages/add-item";
 
 
 function App() {
@@ -17,6 +18,9 @@ function App() {
                 />
                 <Route
                     path = "/item-detail/:id" component={ItemDetail}
+                />
+                <Route
+                    path = "/add-item" component={AddItemPage}
                 />
                 <Route
                     path = "/login" component={LoginPage}
