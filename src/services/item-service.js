@@ -18,3 +18,9 @@ export const serviceAddItem = async(data) => {
   if (res.status != 200) return null;
   return await res.json();
 }
+
+export const serviceGetAllCategories = async () => {
+  const res = callAPI('/categories/', 'GET');
+  if (res.status != 200) return null;
+  return await res.json();
+}

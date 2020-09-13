@@ -7,9 +7,17 @@ import { Redirect, useHistory, withRouter } from "react-router-dom";
 import { register, getUser } from "../services/users";
 import { Header } from "../components/organism";
 import jwt_decode from "jwt-decode";
-import {serviceAddItem} from '../services/item-service';
+import {
+  serviceAddItem,
+  serviceGetAllCategories,
+} from "../services/item-service";
 
 const validationSchema = yup.object({
+  name: yup.string().required(),
+  category: yup.string().required(),
+  quantity: yup.number().required().min(1).integer(),
+  description: yup.string().required(),
+  price: yup.number().required().min(0).integer(),
 });
 
 const TextFieldWValidation = ({ placeholder, type, ...props }) => {
@@ -43,7 +51,7 @@ export class AddItemPage extends React.Component {
   }
 
   addItem = async (data) => {
-    data.merchantId = ''
+    data.merchantId = "";
     let res = await serviceAddItem(data);
     let [msg, color] = ["fail to add item [x]", "red"];
     if (res !== null) {
@@ -68,11 +76,10 @@ export class AddItemPage extends React.Component {
     });
   };
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
-    if (localStorage.getItem('token') === null) {
+    if (localStorage.getItem("token") === null) {
       return <Redirect to="/" />;
     }
 
@@ -82,7 +89,12 @@ export class AddItemPage extends React.Component {
         <Container style={{ textAlign: "center" }}>
           <Paper elevation={0} style={{ padding: "2%" }}>
             {this.state.snackbar.isShown && (
-              <span style={{ width: "fit-content", color: this.state.snackbar.color }}>
+              <span
+                style={{
+                  width: "fit-content",
+                  color: this.state.snackbar.color,
+                }}
+              >
                 <div onClick={this.closeSnackbar}>
                   {this.state.snackbar.msg}
                 </div>
@@ -90,11 +102,11 @@ export class AddItemPage extends React.Component {
             )}
             <Formik
               initialValues={{
-                name:'',
-                category:'',
-                quantity:0,
-                description:'',
-                price:0
+                name: "",
+                category: "",
+                quantity: 0,
+                description: "",
+                price: 0,
               }}
               onSubmit={(data, { setSubmitting }) => {
                 setSubmitting(true);
